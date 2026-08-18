@@ -7,8 +7,8 @@ use crate::{
     routes::route::MetaRoute,
     routes::{
         accounts, audit, billing, browser_kernel, environments, extensions, group_permissions,
-        local_api, messages, preferences, proxies, proxy_visibility, referral, rpa, secret, teams,
-        templates, time, users, workspace_quotas, workspaces,
+        health, local_api, messages, preferences, proxies, proxy_visibility, referral, rpa, secret,
+        teams, templates, time, users, workspace_quotas, workspaces,
     },
     svc_ctx::SvcCtx,
     utils::IConfig,
@@ -64,6 +64,7 @@ where
 fn register_all_routes(svc_ctx: &SvcCtx) -> Router<SvcCtx> {
     let mut meta_route = MetaRoute::new(svc_ctx.config.app.prefix.clone());
 
+    health::register_routes(&mut meta_route);
     secret::register_routes(&mut meta_route);
     time::register_routes(&mut meta_route);
     users::register_routes(&mut meta_route);

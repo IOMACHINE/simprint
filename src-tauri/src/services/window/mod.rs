@@ -280,8 +280,7 @@ impl WindowService {
                 .fullscreen(false)
                 .center()
                 .decorations(false)
-                .visible(false)
-                .drag_and_drop(false)
+                .visible(cfg!(feature = "development"))
                 .devtools(devtools_enabled)
                 .build()?;
 
@@ -316,7 +315,6 @@ impl WindowService {
                 .inner_size(400.0, 600.0)
                 .resizable(true)
                 .decorations(false)
-                .drag_and_drop(false)
                 .devtools(devtools_enabled)
                 .build()?;
 
